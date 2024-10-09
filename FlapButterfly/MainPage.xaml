@@ -1,6 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FlapButterfly.MainPage">
+             x:Class="FlapButterfly.MainPage"
+             Shell.NavBarIsVisible="false"
+             BackgroundColor="White">
+    <Grid>
+        <Image Source="fundo.png"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"/>
 
+        <Image Source="borboleta.png"
+               Margin="10"
+               HeightRequest="50"
+               WidthRequest="50"
+               HorizontalOptions="Start"/>
+
+        <Image Source="canocima.png"
+               HeightRequest="300"
+               HorizontalOptions="End"
+               VerticalOptions="Start"/>
+
+        <Image Source="canobaixo.png"
+               HeightRequest="300"
+               HorizontalOptions="End"
+               VerticalOptions="End"/>
+
+        <Image Source="chao.png"
+               HorizontalOptions="Fill"
+               VerticalOptions="End"/>
+
+    </Grid>
 </ContentPage>
