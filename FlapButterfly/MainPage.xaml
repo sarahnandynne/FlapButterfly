@@ -11,6 +11,7 @@
                VerticalOptions="Fill"/>
 
         <Image Source="borboleta.png"
+              x:Name="imgBorboleta"
                Margin="10"
                HeightRequest="50"
                WidthRequest="50"
