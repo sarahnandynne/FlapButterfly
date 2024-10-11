@@ -4,32 +4,44 @@
              x:Class="FlapButterfly.MainPage"
              Shell.NavBarIsVisible="false"
              BackgroundColor="White">
-    <Grid>
-        <Image Source="fundo.png"
-               Aspect="AspectFill"
-               HorizontalOptions="Fill"
-               VerticalOptions="Fill"/>
+       <Grid>
 
-        <Image Source="borboleta.png"
-              x:Name="imgBorboleta"
-               Margin="10"
-               HeightRequest="50"
-               WidthRequest="50"
-               HorizontalOptions="Start"/>
+              <Image Source="fundo.png"
+                     Aspect="AspectFill"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Fill"/>
 
-        <Image Source="canocima.png"
-               HeightRequest="300"
-               HorizontalOptions="End"
-               VerticalOptions="Start"/>
+              <Image Source="borboleta.png"
+                     x:Name="imgBorboleta"
+                     Margin="10"
+                     HeightRequest="50"
+                     WidthRequest="50"
+                     HorizontalOptions="Start"/>
 
-        <Image Source="canobaixo.png"
-               HeightRequest="300"
-               HorizontalOptions="End"
-               VerticalOptions="End"/>
+              <Image Source="canocima.png"
+                     x:Name="imgCanoCima"
+                     HeightRequest="300"
+                     HorizontalOptions="End"
+                     VerticalOptions="Start"/>
 
-        <Image Source="chao.png"
-               HorizontalOptions="Fill"
-               VerticalOptions="End"/>
+              <Image Source="canobaixo.png"
+                     x:Name="imgCanoBaixo"
+                     HeightRequest="300"
+                     HorizontalOptions="End"
+                     VerticalOptions="End"/>
 
-    </Grid>
+              <Image Source="chao.png"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="End"/>
+
+              <Frame x:Name="frameGameOver"
+                     BackgroundColor="#99000000"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Fill">
+                     <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GameOverClicked"/>
+                     </Frame.GestureRecognizers>
+                     <Image Source="play.png"/>
+              </Frame>
+       </Grid>
 </ContentPage>
