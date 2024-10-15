@@ -5,6 +5,9 @@
              Shell.NavBarIsVisible="false"
              BackgroundColor="White">
        <Grid>
+       <Grid.GestureRecognizers>
+       <TapGestureRecognizer Tapped="OnGridClicked"/>
+       </Grid.GestureRecognizers>
 
               <Image Source="fundo.png"
                      Aspect="AspectFill"
@@ -31,6 +34,9 @@
                      VerticalOptions="End"/>
 
               <Image Source="chao.png"
+                     x:Name="imgChao"
+                     Aspect="AspectFill"
+                     HeightRequest="150"
                      HorizontalOptions="Fill"
                      VerticalOptions="End"/>
 
