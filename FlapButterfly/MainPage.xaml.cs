@@ -9,8 +9,10 @@ public partial class MainPage : ContentPage
     double AlturaJanela = 0;
     double AlturaCano = 300;
     const int MaxTempoPulando = 3;
+    int Score = 0;
     const int ForcaPulo = 20;
     int TempoPulando = 0;
+    const int AberturaMinima = 200;
     bool EstaPulando = false;
     int Velocidade = 10;
     public MainPage()
@@ -84,6 +86,13 @@ public partial class MainPage : ContentPage
         {
             imgCanoBaixo.TranslationX = 0;
             imgCanoCima.TranslationX = 0;
+            var AlturaMax = -05;
+            var AlturaMin = -imgCanoBaixo.HeightRequest;
+            imgCanoCima.TranslationY = Random.Shared.Next((int)AlturaMin, (int)AlturaMax);
+            imgCanoBaixo.TranslationY = imgCanoCima.TranslationY + AberturaMinima;
+            Score++;
+            labelScore.Text = "Score: " + Score.ToString("D3");
+            labelFrase.Text = "VOCÊ PASSOU POR: " + Score.ToString("D3") + " CANOS";
         }
     }
     void AplicaPulo()

@@ -5,9 +5,9 @@
              Shell.NavBarIsVisible="false"
              BackgroundColor="White">
        <Grid>
-       <Grid.GestureRecognizers>
-       <TapGestureRecognizer Tapped="OnGridClicked"/>
-       </Grid.GestureRecognizers>
+              <Grid.GestureRecognizers>
+                     <TapGestureRecognizer Tapped="OnGridClicked"/>
+              </Grid.GestureRecognizers>
 
               <Image Source="fundo.png"
                      Aspect="AspectFill"
@@ -24,11 +24,13 @@
               <Image Source="canocima.png"
                      x:Name="imgCanoCima"
                      HeightRequest="300"
+                     WidthRequest="60"
                      HorizontalOptions="End"
                      VerticalOptions="Start"/>
 
               <Image Source="canobaixo.png"
                      x:Name="imgCanoBaixo"
+                     WidthRequest="60"
                      HeightRequest="300"
                      HorizontalOptions="End"
                      VerticalOptions="End"/>
@@ -40,6 +42,15 @@
                      HorizontalOptions="Fill"
                      VerticalOptions="End"/>
 
+              <Label x:Name="labelScore"
+                     Margin="5,5"
+                     FontFamily="games"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"
+                     HorizontalTextAlignment="Center"
+                     FontSize="25"
+                     TextColor="#006600"/>
+
               <Frame x:Name="frameGameOver"
                      BackgroundColor="#99000000"
                      HorizontalOptions="Fill"
@@ -47,7 +58,18 @@
                      <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="GameOverClicked"/>
                      </Frame.GestureRecognizers>
-                     <Image Source="play.png"/>
+       
+              <VerticalStackLayout>
+              <Label x:Name="labelFrase"
+                     FontFamily="games"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Fill"
+                     HorizontalTextAlignment="Center"
+                     FontSize="25"
+                     TextColor="Black"/>
+
+              <Image Source="play.png"/>
+               </VerticalStackLayout>
               </Frame>
        </Grid>
 </ContentPage>
