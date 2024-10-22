@@ -59,17 +59,34 @@
                             <TapGestureRecognizer Tapped="GameOverClicked"/>
                      </Frame.GestureRecognizers>
        
-              <VerticalStackLayout>
+              <Grid>
+              <Grid.RowDefinitions>
+               <RowDefinition Height="*"/>
+               <RowDefinition Height="*"/>
+              </Grid.RowDefinitions>
+
               <Label x:Name="labelFrase"
                      FontFamily="games"
-                     HorizontalOptions="Fill"
-                     VerticalOptions="Fill"
+                     Grid.Row="2"
                      HorizontalTextAlignment="Center"
                      FontSize="25"
-                     TextColor="Black"/>
+                     TextColor="White"/>
 
-              <Image Source="play.png"/>
-               </VerticalStackLayout>
+              <Image Source="play.png"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Fill"
+                     Grid.Row="0"
+                     Grid.RowSpan="1"
+                     Aspect="AspectFill"/>
+
+              
+              
+              
+              
+              
+              
+              
+              </Grid>
               </Frame>
        </Grid>
 </ContentPage>
