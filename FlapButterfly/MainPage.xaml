@@ -17,28 +17,32 @@
               <Image Source="borboleta.png"
                      x:Name="imgBorboleta"
                      Margin="10"
+                     Aspect="AspectFit"
                      HeightRequest="50"
                      WidthRequest="50"
+                     VerticalOptions="Center"
                      HorizontalOptions="Start"/>
 
               <Image Source="canocima.png"
                      x:Name="imgCanoCima"
                      HeightRequest="300"
                      WidthRequest="60"
+                     Aspect="Fill"
                      HorizontalOptions="End"
                      VerticalOptions="Start"/>
 
               <Image Source="canobaixo.png"
                      x:Name="imgCanoBaixo"
+                     Aspect="Fill"
                      WidthRequest="60"
                      HeightRequest="300"
                      HorizontalOptions="End"
-                     VerticalOptions="End"/>
+                     VerticalOptions="Start"/>
 
               <Image Source="chao.png"
                      x:Name="imgChao"
                      Aspect="AspectFill"
-                     HeightRequest="150"
+                     HeightRequest="50"
                      HorizontalOptions="Fill"
                      VerticalOptions="End"/>
 
@@ -58,35 +62,23 @@
                      <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="GameOverClicked"/>
                      </Frame.GestureRecognizers>
-       
-              <Grid>
-              <Grid.RowDefinitions>
-               <RowDefinition Height="*"/>
-               <RowDefinition Height="*"/>
-              </Grid.RowDefinitions>
 
-              <Label x:Name="labelFrase"
-                     FontFamily="games"
-                     Grid.Row="2"
-                     HorizontalTextAlignment="Center"
-                     FontSize="25"
-                     TextColor="White"/>
-
-              <Image Source="play.png"
-                     HorizontalOptions="Fill"
-                     VerticalOptions="Fill"
-                     Grid.Row="0"
-                     Grid.RowSpan="1"
-                     Aspect="AspectFill"/>
-
-              
-              
-              
-              
-              
-              
-              
-              </Grid>
+                     <VerticalStackLayout VerticalOptions="Center">
+                            <Label x:Name="labelFrase"
+                                   Text="Score: 000"
+                                   FontSize="30"
+                                   TextColor="White"
+                                   Margin="0,20,20,0"
+                                   FontFamily="games"
+                                   VerticalOptions="Start"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"/>
+                            <Image Source="play.png"
+                                   Aspect="AspectFit"
+                                   Margin="0,200,0,0"
+                                   HeightRequest="150"
+                                   WidthRequest="300"/>
+                     </VerticalStackLayout>
               </Frame>
        </Grid>
 </ContentPage>

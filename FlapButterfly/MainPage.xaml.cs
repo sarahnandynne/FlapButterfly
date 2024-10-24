@@ -2,7 +2,7 @@
 
 public partial class MainPage : ContentPage
 {
-    const int Gravidade = 8;
+    const int Gravidade = 5;
     const int TempoEntreFrames = 25;
     bool EstaMorto = true;
     double LarguraJanela = 0;
@@ -14,7 +14,7 @@ public partial class MainPage : ContentPage
     int TempoPulando = 0;
     const int AberturaMinima = 200;
     bool EstaPulando = false;
-    int Velocidade = 10;
+    int Velocidade = 5;
     public MainPage()
     {
         InitializeComponent();
@@ -29,9 +29,9 @@ public partial class MainPage : ContentPage
         while (!EstaMorto)
         {
             if (EstaPulando)
-            AplicaPulo();
+                AplicaPulo();
             else
-            AplicaGravidade();
+                AplicaGravidade();
             GerenciaCanos();
             if (VerificaColisao())
             {
@@ -58,37 +58,37 @@ public partial class MainPage : ContentPage
     }
 
     bool VerificaColisaoCanoCima()
-		{
-			var posHBorboleta = (LarguraJanela / 2) - (imgBorboleta.WidthRequest / 2);
-			var posVBorboleta = (AlturaJanela / 2) - (imgBorboleta.HeightRequest / 2) + imgBorboleta.TranslationY;
-			if (posHBorboleta >= Math.Abs(imgCanoCima.TranslationX) - imgCanoCima.WidthRequest &&
-			posHBorboleta <= Math.Abs(imgCanoCima.TranslationX) + imgCanoCima.WidthRequest &&
-			posVBorboleta <= imgCanoCima.HeightRequest + imgCanoCima.TranslationY)
+    {
+        var posHBorboleta = (LarguraJanela - 50) - (imgBorboleta.WidthRequest / 2);
+        var posVBorboleta = (AlturaJanela / 2) - (imgBorboleta.HeightRequest / 2) + imgBorboleta.TranslationY;
+        if (posHBorboleta >= Math.Abs(imgCanoCima.TranslationX) - imgCanoCima.WidthRequest &&
+        posHBorboleta <= Math.Abs(imgCanoCima.TranslationX) + imgCanoCima.WidthRequest &&
+        posVBorboleta <= imgCanoCima.HeightRequest + imgCanoCima.TranslationY)
 
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-        bool VerificaColisaoCanoBaixo()
-		{
-			var posHBorboleta = (LarguraJanela / 2) - (imgBorboleta.WidthRequest / 2);
-			var posVBorboleta = (AlturaJanela / 2) - (imgBorboleta.HeightRequest / 2) + imgBorboleta.TranslationY;
-			if (posHBorboleta >= Math.Abs(imgCanoBaixo.TranslationX) - imgCanoBaixo.WidthRequest &&
-			posHBorboleta <= Math.Abs(imgCanoBaixo.TranslationX) + imgCanoBaixo.WidthRequest &&
-			posVBorboleta <= imgCanoBaixo.HeightRequest + imgCanoBaixo.TranslationY)
-
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool VerificaColisaoCanoBaixo()
+    {
+        var posHBorboleta = (LarguraJanela - 50) - (imgBorboleta.WidthRequest / 2);
+        var posVBorboleta = (AlturaJanela / 2) + (imgBorboleta.HeightRequest / 2) + imgBorboleta.TranslationY;
+        var yMaxCano = imgCanoCima.HeightRequest + imgCanoCima.TranslationY + AberturaMinima;
+        if (posHBorboleta >= Math.Abs(imgCanoBaixo.TranslationX) - imgCanoBaixo.WidthRequest &&
+           posHBorboleta <= Math.Abs(imgCanoBaixo.TranslationX) + imgCanoBaixo.WidthRequest &&
+           posVBorboleta >= yMaxCano)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     bool VerificaColisaoTeto()
     {
         var minY = -AlturaJanela / 2;
@@ -106,11 +106,16 @@ public partial class MainPage : ContentPage
         else
             return false;
     }
-    protected override void OnSizeAllocated(double w, double h)
+    protected override void OnSizeAllocated(double width, double height)
     {
-        base.OnSizeAllocated(w, h);
-        LarguraJanela = w;
-        AlturaJanela = h;
+        base.OnSizeAllocated(width, height);
+        LarguraJanela = width;
+        AlturaJanela = height;
+        if (Height > 0)
+        {
+            imgCanoCima.HeightRequest = AlturaJanela;
+            imgCanoBaixo.HeightRequest = AlturaJanela;
+        }
     }
 
     void GerenciaCanos()
@@ -121,13 +126,15 @@ public partial class MainPage : ContentPage
         {
             imgCanoBaixo.TranslationX = 0;
             imgCanoCima.TranslationX = 0;
-            var AlturaMax = -05;
-            var AlturaMin = -imgCanoBaixo.HeightRequest;
-            imgCanoCima.TranslationY = Random.Shared.Next((int)AlturaMin, (int)AlturaMax);
-            imgCanoBaixo.TranslationY = imgCanoCima.TranslationY + AberturaMinima;
+            var AlturaMaxima = -(imgCanoBaixo.HeightRequest * 0.2);
+            var AlturaMinima = -imgCanoBaixo.HeightRequest * 0.8;
+            imgCanoCima.TranslationY = Random.Shared.Next((int)AlturaMinima, (int)AlturaMaxima);
+            imgCanoBaixo.TranslationY = imgCanoCima.HeightRequest + imgCanoCima.TranslationY + AberturaMinima;
             Score++;
             labelScore.Text = "Score: " + Score.ToString("D3");
             labelFrase.Text = "VOCÊ PASSOU POR: " + Score.ToString("D3") + " CANOS";
+            if (Score % 2 == 0)
+                Velocidade++;
         }
     }
     void AplicaPulo()
@@ -154,9 +161,10 @@ public partial class MainPage : ContentPage
         imgBorboleta.TranslationX = 0;
         imgBorboleta.TranslationY = 0;
         Score = 0;
+        Velocidade = 5;
         GerenciaCanos();
     }
-    void OnGridClicked (object sender, TappedEventArgs a) 
+    void OnGridClicked(object sender, TappedEventArgs a)
     {
         EstaPulando = true;
     }
