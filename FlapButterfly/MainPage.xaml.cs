@@ -36,6 +36,7 @@ public partial class MainPage : ContentPage
             if (VerificaColisao())
             {
                 EstaMorto = true;
+                SoundHelper.Play("gameover.wav");
                 frameGameOver.IsVisible = true;
                 break;
             }
@@ -132,6 +133,7 @@ public partial class MainPage : ContentPage
             imgCanoBaixo.TranslationY = imgCanoCima.HeightRequest + imgCanoCima.TranslationY + AberturaMinima;
             Score++;
             labelScore.Text = "Score: " + Score.ToString("D3");
+             SoundHelper.Play("pontuação.wav");
             labelFrase.Text = "VOCÊ PASSOU POR: " + Score.ToString("D3") + " CANOS";
             if (Score % 2 == 0)
                 Velocidade++;
@@ -145,6 +147,7 @@ public partial class MainPage : ContentPage
         {
             EstaPulando = false;
             TempoPulando = 0;
+            SoundHelper.Play("começo.wav");
         }
     }
     void GameOverClicked(object s, TappedEventArgs a)
@@ -156,6 +159,7 @@ public partial class MainPage : ContentPage
     void Inicializar()
     {
         EstaMorto = false;
+        SoundHelper.Play("começo.wav");
         imgCanoCima.TranslationX = -LarguraJanela;
         imgCanoBaixo.TranslationX = -LarguraJanela;
         imgBorboleta.TranslationX = 0;
